@@ -6,15 +6,13 @@ import SunburstBook from './SunburstBook.vue'
 import BarBrush from './BarBrush.vue'
 // import TimelineFinance from './TimelineFinance.vue'
 // import PieRoseTypeSimple from './PieRoseTypeSimple.vue'
-import MovieZhexian from './movieZhexian.vue'
-import WordCloud2 from './WordCloud2.vue'
+import MovieZhexian from './MovieZhexian.vue'
 
 
 </script>
 
 <template>
   <div style="background-color: #fff3e7;">
-    <!-- <WordCloud2 /> -->
     <el-row :gutter="20">
       <el-col :span="12">
         <SunburstBook />
