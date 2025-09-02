@@ -29,6 +29,10 @@ const goData = () => {
 const goPhoto = () => {
   window.location.href = 'https://snowdropk.github.io/photo'
 }
+
+const goMap = () => {
+  window.location.href = 'https://snowdropk.github.io/map'
+}
 </script>
 
 <template>
@@ -52,22 +56,25 @@ const goPhoto = () => {
             <a href="/" class="navbar-link">首页</a>
           </li> -->
           <li class="navbar-item">
-            <a class="navbar-link" style="cursor: pointer;" @click="goFilmFestival">影展</a>
+            <a class="navbar-link" style="cursor: pointer;" @click="goFilmFestival">百年影展</a>
           </li>
           <li class="navbar-item">
             <a href="/chat" class="navbar-link">ai聊天室</a>
           </li>
           <li class="navbar-item">
-            <a href="/poster" class="navbar-link">ai电影海报</a>
+            <a href="/poster" class="navbar-link">ai海报实验室</a>
           </li>
           <li class="navbar-item">
-            <a class="navbar-link" style="cursor: pointer;" @click="goData">电影数据可视化</a>
+            <a class="navbar-link" style="cursor: pointer;" @click="goData">数据分析</a>
           </li>
           <li class="navbar-item">
-            <a href="/wordCloud" class="navbar-link">词云</a>
+            <a href="/wordCloud" class="navbar-link">电影词云</a>
           </li>
           <li class="navbar-item">
-            <a class="navbar-link" @click="goPhoto" style="cursor: pointer;">剧照墙</a>
+            <a class="navbar-link" @click="goPhoto" style="cursor: pointer;">定格瞬间</a>
+          </li>
+          <li class="navbar-item">
+            <a class="navbar-link" @click="goMap" style="cursor: pointer;">寻踪觅迹</a>
           </li>
           <!-- <li class="navbar-item">
             <a href="/about" class="navbar-link">关于我们</a>

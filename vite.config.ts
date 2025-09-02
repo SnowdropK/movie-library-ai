@@ -9,7 +9,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // https://vite.dev/config/
 export default defineConfig({
    // 1. 解决生产环境路径问题（如果部署在子目录，需修改为对应路径，如 '/movie/'）
-  base: './',
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src') // 确保有这个配置

@@ -53,16 +53,22 @@
           <template #header>
             <div class="card-header">
               <el-icon class="header-icon"><PromptFilled /></el-icon>
-              <span class="header-title">生成提示词</span>
+              <span class="header-title">海报模板</span>
             </div>
           </template>
+          <div style="text-align: center;">
+            <img :src="ruanlingyu" style="width: 300px;"  />
+          </div>
 
           <el-form :model="form" class="prompt-form" ref="promptFormRef">
             <div class="prompt-tips" style="margin-bottom: 12px;">
               <el-icon size="14"><InfoFilled /></el-icon>
-              <span>提示：包含「风格+构图」会让生成效果更精准</span>
+              <span>提示：选择风格，才能点击生成海报</span>
             </div>
-            <el-form-item
+            <div class="prompt-tips" style="margin-bottom: 12px;">
+              <span>左侧选择风格模板，生成将参考其视觉风格</span>
+            </div>
+            <!-- <el-form-item
               label="风格描述"
               prop="prompt"
               :rules="[{ required: true, message: '请输入海报风格提示词', trigger: 'blur' }]"
@@ -77,16 +83,16 @@
                 show-word-limit
                 class="prompt-input"
               />
-            </el-form-item>
+            </el-form-item> -->
 
-            <el-form-item label="参考风格" prop="selectedMovie" label-width="80px">
+            <!-- <el-form-item prop="selectedMovie" label-width="80px">
               <div class="reference-tips">
-                <!-- <el-icon size="14"><StarFilled /></el-icon> -->
-                <span>左侧选择电影模板，生成将参考其视觉风格</span>
+                <el-icon size="14"><StarFilled /></el-icon>
+                <span>左侧选择风格模板，生成将参考其视觉风格</span>
               </div>
               
-              <!-- 选中电影预览 -->
-              <!-- <div class="selected-movie-preview" v-if="form.selectedMovie">
+              选中电影预览
+              <div class="selected-movie-preview" v-if="form.selectedMovie">
                 <el-card :body-style="{ padding: '8px' }" class="mini-movie-card">
                   <div class="mini-movie-content">
                     <img
@@ -99,8 +105,8 @@
                     </div>
                   </div>
                 </el-card>
-              </div> -->
-            </el-form-item>
+              </div>
+            </el-form-item> -->
           </el-form>
 
           <!-- 生成按钮 -->
@@ -112,7 +118,7 @@
               class="generate-btn"
               @click="generatePoster"
               :loading="isGenerating"
-              :disabled="!form.prompt"
+              :disabled="!form.selectedMovie"
             >
               <!-- <el-icon class="btn-icon" v-if="!isGenerating"><MagicStickFilled /></el-icon>
               <el-icon class="btn-icon" v-else><LoadingFilled /></el-icon> -->
@@ -231,7 +237,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import ruanlingyu from '@/assets/postersAi/ruanlingyu.jpg'
+import ruanlingyu from '@/assets/posters/ruanlingyu.jpg'
 import bopu from '@/assets/posters/波普艺术.jpg'
 import guzhang from '@/assets/posters/故障艺术.jpg'
 import jianzhi from '@/assets/posters/剪纸风.jpg'
