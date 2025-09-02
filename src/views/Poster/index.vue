@@ -72,7 +72,7 @@
                 v-model="form.prompt"
                 type="textarea"
                 :rows="6"
-                placeholder="例如：赛博朋克风格，雨夜城市背景，霓虹灯光效，主角站在高楼边缘"
+                placeholder="例如：赛博朋克风格，雨夜城市背景，霓虹灯光效"
                 maxlength="600"
                 show-word-limit
                 class="prompt-input"
@@ -86,20 +86,20 @@
               </div>
               
               <!-- 选中电影预览 -->
-              <div class="selected-movie-preview" v-if="form.selectedMovie">
+              <!-- <div class="selected-movie-preview" v-if="form.selectedMovie">
                 <el-card :body-style="{ padding: '8px' }" class="mini-movie-card">
                   <div class="mini-movie-content">
-                    <!-- <img
+                    <img
                       :src="getSelectedMoviePoster()"
                       class="mini-poster-img"
-                    /> -->
-                    <!-- <div class="mini-movie-info">
+                    />
+                    <div class="mini-movie-info">
                       <h5 class="mini-movie-title">{{ getSelectedMovieName() }}</h5>
                       <p class="mini-movie-year">{{ getSelectedMovieYear() }}</p>
-                    </div> -->
+                    </div>
                   </div>
                 </el-card>
-              </div>
+              </div> -->
             </el-form-item>
           </el-form>
 
@@ -238,11 +238,8 @@ import jianzhi from '@/assets/posters/剪纸风.jpg'
 import suanxing from '@/assets/posters/酸性风.jpg'
 import weiduoliya from '@/assets/posters/维多利亚风.jpg'
 import xiangsu from '@/assets/posters/像素风.jpg'
-// ai
-import bopuAi from '@/assets/postersAi/bopu.jpg'
-import guzhangAi from '@/assets/postersAi/guzhang.jpg'
-import suanxingAi from '@/assets/postersAi/suanxing.jpg'
-import xiangsuAi from '@/assets/postersAi/xiangsu.jpg'
+import data from './data'
+import bopuAi2 from '@/assets/postersAi/bopu2.jpg'
 
 // 响应式变量
 const form = ref({
@@ -330,6 +327,33 @@ const chooseStyle = (movie) => {
   generatedPoster.value = ''
 }
 
+const getImageUrl = () => {
+    let randomUrl = ''
+    switch(form.value.selectedMovie) {
+      case 1:
+        randomUrl = data.bopu[Math.floor(Math.random() * data.bopu.length)]
+        break;
+      case 2:
+        randomUrl = data.guzhang[Math.floor(Math.random() * data.guzhang.length)]
+        break;
+      case 3:
+        randomUrl = data.suanxing[Math.floor(Math.random() * data.suanxing.length)]
+        break;
+      case 4:
+        randomUrl = data.xiangsu[Math.floor(Math.random() * data.xiangsu.length)]
+        break;
+      case 5:
+        randomUrl = data.jianzhi[Math.floor(Math.random() * data.jianzhi.length)]
+        break;
+      case 6:
+        randomUrl = data.weiduoliya[Math.floor(Math.random() * data.weiduoliya.length)]
+        break;
+      default:
+        randomUrl = bopuAi2;
+    }
+    return randomUrl
+}
+
 // 核心功能
 const generatePoster = async () => {
   // 表单校验
@@ -358,24 +382,7 @@ const generatePoster = async () => {
       setTimeout(() => {
         generateProgress.value = 100;
         clearInterval(progressTimer);
-        let imageUrl = ''
-        switch(form.value.selectedMovie) {
-          case 1:
-            imageUrl = bopuAi;
-            break;
-          case 2:
-            imageUrl = guzhangAi;
-            break;
-          case 3:
-            imageUrl = suanxingAi;
-            break;
-          case 4:
-            imageUrl = xiangsuAi;
-            break;
-          default:
-            imageUrl = ruanlingyu;
-        }
-          
+        const imageUrl = getImageUrl();
         resolve(imageUrl);
       }, 3000);
     });

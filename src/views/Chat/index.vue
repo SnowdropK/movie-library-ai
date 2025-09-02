@@ -17,7 +17,7 @@
               />
             </el-avatar> -->
             <img 
-              style="width: 200px;height: 300px;"
+              style="width: 240px;height: 360px;"
               :src="selectedOtherAvatar.url" 
               :alt="selectedOtherAvatar.name" 
               class="avatar-img"
@@ -214,6 +214,8 @@ import huangshuqing from '@/assets/charactors/huangshuqing.jpg'
 
 // 语音
 import ruanlingyuAudio from '@/assets/audio/ruanlingyu1.mp3'
+// 对话
+import data from './data'
  
 
 // ======================== 1. 头像数据（支持GIF链接） ========================
@@ -223,13 +225,13 @@ const otherAvatarList = ref([
   { name: '徐来', url: xulai },
   { name: '陈燕燕', url: chenyanyan },
   { name: '叶秋心 ', url: yeqiuxin },
-  { name: '陈玉梅', url: chenyumei },
+  // { name: '陈玉梅', url: chenyumei },
   { name: '袁牧之', url: yuanmuzhi },
   { name: '梅熹', url: meixi },
   // { name: '郑君里', url: zhegnjunli },
   { name: '郑正秋', url: zhengqiu},
   // { name: '周伯勋', url: zhouboxun},
-  { name: '黄蜀芹', url: huangshuqing},
+  // { name: '黄蜀芹', url: huangshuqing},
   { name: '王苹', url: wangping},
 ])
 
@@ -460,6 +462,46 @@ const ruan_wo = {
 const zheng_wo = {
 }
 
+// 获取对话
+const getRandomReply = () => {
+    let randomReply = ''
+    // 阮玲玉
+    if (selectedOtherAvatar.value.name === '阮玲玉') {
+      randomReply = data.ruanlingyu[Math.floor(Math.random() * data.ruanlingyu.length)]
+    }
+    // 徐来
+    else if (selectedOtherAvatar.value.name === '徐来') {
+      randomReply = data.xulai[Math.floor(Math.random() * data.xulai.length)]
+    }
+    // 陈燕燕
+    else if (selectedOtherAvatar.value.name === '陈燕燕') {
+      randomReply = data.chenyanyan[Math.floor(Math.random() * data.chenyanyan.length)]
+    }
+    // 叶秋心
+    else if (selectedOtherAvatar.value.name === '叶秋心') {
+      randomReply = data.yeqiuxin[Math.floor(Math.random() * data.yeqiuxin.length)]
+    }
+    // 袁牧之
+    else if (selectedOtherAvatar.value.name === '袁牧之') {
+      randomReply = data.yuanmuzhi[Math.floor(Math.random() * data.yuanmuzhi.length)]
+    } 
+    // 梅熹
+    else if (selectedOtherAvatar.value.name === '梅熹') {
+      randomReply = data.meixi[Math.floor(Math.random() * data.meixi.length)]
+    } 
+    // 郑正秋
+    else if (selectedOtherAvatar.value.name === '郑正秋') {
+      randomReply = data.zhegnzhengqiu[Math.floor(Math.random() * data.zhegnzhengqiu.length)]
+    } 
+    // 王苹
+    else if (selectedOtherAvatar.value.name === '王苹') {
+      randomReply = data.wangping[Math.floor(Math.random() * data.wangping.length)]
+    } else {
+      randomReply = '是啊，我也是这么想的'
+    }
+    return randomReply
+}
+
 // 模拟对方回复（可能是文本或语音）
 const simulateOtherReply = (content) => {
   // 50%概率是语音消息
@@ -495,24 +537,10 @@ const simulateOtherReply = (content) => {
     const audio = new Audio(randomUrl)
     audioElements.value[voiceMessage.id] = audio
   } else {
-    let replies = []
-    let randomReply = ''
     // const randomReply = replies[Math.floor(Math.random() * replies.length)]
     // 模拟文本回复 content
-    // 阮玲玉
-    if (selectedOtherAvatar.value.name === '阮玲玉') {
-      randomReply = ruan_wo[content]
-    }
-    // 郑正秋
-    else if (selectedOtherAvatar.value.name === '郑正秋') {
-      randomReply = zheng_wo[content]
-    } else {
-      replies = [
-      ]
-      randomReply = replies[Math.floor(Math.random() * replies.length)]
-    }
+    const randomReply = getRandomReply()
 
-    
     const textMessage = {
       id: Date.now() + 1,
       sender: 'other',
@@ -705,6 +733,9 @@ watch(chatMessages, () => {
 
 /* 头像选择器 */
 .avatar-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1;
   overflow-y: auto;
 }
@@ -722,6 +753,7 @@ watch(chatMessages, () => {
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
+  width: 300px;
 }
 
 /* 选中的头像高亮 */

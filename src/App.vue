@@ -16,6 +16,19 @@ const isHome = computed(() => {
 const goHome = () => {
   router.push('/');
 }
+
+const goFilmFestival = () => {
+  window.location.href = 'https://snowdropk.github.io/movie'
+  // window.open('https://snowdropk.github.io/movie')
+}
+
+const goData = () => {
+  window.location.href = 'https://snowdropk.github.io/data'
+}
+
+const goPhoto = () => {
+  window.location.href = 'https://snowdropk.github.io/photo'
+}
 </script>
 
 <template>
@@ -39,7 +52,7 @@ const goHome = () => {
             <a href="/" class="navbar-link">首页</a>
           </li> -->
           <li class="navbar-item">
-            <a href="/chat" class="navbar-link">影展</a>
+            <a class="navbar-link" style="cursor: pointer;" @click="goFilmFestival">影展</a>
           </li>
           <li class="navbar-item">
             <a href="/chat" class="navbar-link">ai聊天室</a>
@@ -48,13 +61,13 @@ const goHome = () => {
             <a href="/poster" class="navbar-link">ai电影海报</a>
           </li>
           <li class="navbar-item">
-            <a href="/charts" class="navbar-link">电影数据可视化</a>
+            <a class="navbar-link" style="cursor: pointer;" @click="goData">电影数据可视化</a>
           </li>
           <li class="navbar-item">
             <a href="/wordCloud" class="navbar-link">词云</a>
           </li>
           <li class="navbar-item">
-            <a href="/wordCloud" class="navbar-link">剧照墙</a>
+            <a class="navbar-link" @click="goPhoto" style="cursor: pointer;">剧照墙</a>
           </li>
           <!-- <li class="navbar-item">
             <a href="/about" class="navbar-link">关于我们</a>
