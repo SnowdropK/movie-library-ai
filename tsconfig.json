@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    // ... 其他配置
+    "noImplicitAny": false,  // 允许隐式 any 类型（默认是 true）
+    "types": ["vite/client", "node"] // 确保包含 "node"（后续解决path问题会用到）
+  },
+  // "include": [
+  //   "src/**/*.ts", 
+  //   "src/**/*.d.ts", // 包含 .d.ts 类型声明文件
+  //   "src/**/*.vue"  // 包含 .vue 文件
+  // ]
+}
