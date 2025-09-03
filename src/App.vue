@@ -67,9 +67,9 @@ const goMap = () => {
           <li class="navbar-item">
             <a class="navbar-link" style="cursor: pointer;" @click="goData">数据分析</a>
           </li>
-          <li class="navbar-item">
+          <!-- <li class="navbar-item">
             <a href="/wordCloud" class="navbar-link">电影词云</a>
-          </li>
+          </li> -->
           <li class="navbar-item">
             <a class="navbar-link" @click="goPhoto" style="cursor: pointer;">定格瞬间</a>
           </li>
